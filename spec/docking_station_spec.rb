@@ -5,6 +5,17 @@ describe DockingStation do
 
   it { is_expected.to respond_to :release_bike }
 
+  describe '#initialize' do
+    it 'should have allow the maintainer to set the capacity' do
+      station = DockingStation.new(30)
+      expect(station.capacity).to eq 30
+    end
+    it 'should have a capacity of the DefaultCapacity if the maitainer fails to set one' do
+    station = DockingStation.new
+    expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+end
+
   describe '#release_bike' do
     it 'releases a working bike' do
       bike = Bike.new
